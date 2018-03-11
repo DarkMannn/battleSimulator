@@ -1,0 +1,35 @@
+{
+    "env": {
+        "commonjs": true,
+        "es6": true,
+        "node": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "sourceType": "module"
+    },
+    "rules": {
+        "indent": [
+            "error",
+            "tab"
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "semi": [
+            "error",
+			"always", {
+				"omitLastInOneLineBlock": true
+			}
+        ],
+        "no-trailing-spaces":[
+            "error", {
+                "skipBlankLines": true, 
+                "ignoreComments": true
+            }
+        ],
+		"no-console":"off",
+		"no-extra-semi":"off"
+    }
+}

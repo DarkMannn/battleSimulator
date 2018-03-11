@@ -1,0 +1,19 @@
+{
+  "name": "battlesimulator",
+  "version": "1.0.0",
+  "description": "Configurable battle simulator made for a job interview",
+  "main": "simulation.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "simulator",
+	"battle"
+  ],
+  "author": "Darko Milosevic",
+  "license": "ISC",
+  "dependencies": {
+    "eslint": "^4.18.2",
+    "jest": "^22.4.2"
+  }
+}
