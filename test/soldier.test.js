@@ -47,6 +47,7 @@ test('Soldier factory function methods', () => {
 
 	let soldierExperience = soldierD.experience;
 	soldierD.increaseExperience();
-	expect(soldierD.experience).toBe(soldierExperience + 1);
+	if (soldierD.experience !== 50) expect(soldierD.experience).toBe(soldierExperience + 1);
+	else expect(soldierD.experience).toBe(50);
 
 });
