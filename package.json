@@ -1,7 +1,7 @@
 {
   "name": "battlesimulator",
   "version": "1.0.0",
-  "description": "Configurable battle simulator made for a job interview",
+  "description": "Configurable battle simulator",
   "main": "index.js",
   "scripts": {
     "test": "jest"
