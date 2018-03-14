@@ -1,4 +1,4 @@
-let soldier = require('../lib/soldier');
+let soldier = require('../lib/formations/soldier');
 
 let soldierA = soldier(300, 4);
 let soldierB = soldier();

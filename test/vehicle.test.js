@@ -1,4 +1,4 @@
-let vehicle = require('../lib/vehicle');
+let vehicle = require('../lib/formations/vehicle');
 
 let vehicleA = vehicle(300);
 let vehicleB = vehicle();

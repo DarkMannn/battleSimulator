@@ -1,4 +1,4 @@
-let squad = require('../lib/squad');
+let squad = require('../lib/formations/squad');
 
 let squadA = squad();
 let squadB = squad(4);

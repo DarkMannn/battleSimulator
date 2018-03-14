@@ -1,4 +1,4 @@
-let {Red, Blue} = require('../lib/teams');
+let {Red, Blue} = require('../lib/formations/teams');
 
 test('if teams have valid defaults', () => {
 
