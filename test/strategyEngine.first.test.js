@@ -1,4 +1,4 @@
-let findTarget = require('../lib/strategyEngine');
+let findTarget = require('../lib/targetCalculator/calculatorEngine');
 let {Red, Blue} = require('../lib/formations/teams');
 
 for (let i = 0; i < 5; i++) {
@@ -31,8 +31,8 @@ Red.armies.forEach((army, aIndex) => {
 let armyBlue1 = Blue.spawnArmy('strongest', {damage: 4});
 let armyBlue2 = Blue.spawnArmy('weakest', {damage: 4});
 
-let res1 = findTarget(Red, armyBlue1);
-let res2 = findTarget(Red, armyBlue2);
+let res1 = findTarget(Red, armyBlue1.strategy, armyBlue1.prioritization);
+let res2 = findTarget(Red, armyBlue2.strategy, armyBlue2.prioritization);
 
 test('if strategy engine finds targets properly -> first test', () => {
 

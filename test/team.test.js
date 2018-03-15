@@ -12,7 +12,7 @@ test('if team factory generates valid armies', () => {
 	let army1 = Red.spawnArmy();
 	let army2 = Red.spawnArmy();
 	expect(Red.armies.length === 2).toBeTruthy();
-	expect(army1.team).toEqual(Red);
+	expect(army1.team).toEqual('Red');
 
 	let counter = 23;
 	while (counter) {

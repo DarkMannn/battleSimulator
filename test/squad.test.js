@@ -33,7 +33,7 @@ test('squad prototype methods', () => {
 
 	let damageSum = 0;
 	squadD.units.forEach(unit => damageSum += unit.inflictDamage());
-	expect(squadD.inflictDamage()).toBe(damageSum);
+	expect(squadD.calculateDamage()).toBe(damageSum);
 
 	squadG.receiveDamage(4000);
 	expect(squadG.isActive).toBeFalsy();

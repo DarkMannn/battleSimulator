@@ -17,13 +17,16 @@ test('if army factory generates valid squads', () => {
 		counter--;
 	}
 	expect(armyB.squads.length).toBe(23);
+	expect(armyB.team).toBe('Blue');
 	
 	expect(armyC.strategy).toBe('weakest');
 	armyC.spawnSquad();
 	armyC.spawnSquad();
 	expect(armyC.squads.length).toBe(2);
 	expect(armyC.prioritization[3]).toBe('experience');
+	expect(armyC.squads[0].prioritization[3]).toBe('experience');
 	expect(armyC.prioritization[2]).toBe('health');
+	expect(armyC.squads[0].prioritization[2]).toBe('health');
 	
 	expect(armyD.prioritization.length).toBe(0);
 	

@@ -30,7 +30,7 @@
 				"ignoreComments": true
 			}
 		],
-		"no-console":"warn",
+		"no-console":"off",
 		"no-extra-semi":"off",
 		"no-tabs":"off",
 		"space-before-function-paren":"off",
