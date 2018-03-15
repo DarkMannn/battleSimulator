@@ -6,7 +6,7 @@ let vehicleC = vehicle(1300, {recharge: 200, experience: 5});
 let vehicleD = vehicle(2001, {notRecharge: 300, notExperience: 6});
 
 test('vehicle factory function random number generator', () => {
-
+	
 	expect(vehicleA.recharge).toBeGreaterThanOrEqual(1000);
 	expect(vehicleA.recharge).toBeLessThanOrEqual(2000);
 

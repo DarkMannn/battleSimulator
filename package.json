@@ -4,7 +4,9 @@
   "description": "Configurable battle simulator",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+	"test": "jest",
+	"debug": "nodemon --inspect-brk index.js",
+	"start": "node index.js"
   },
   "jest": {
 	"testEnvironment":"node"
