@@ -18,6 +18,7 @@ test('if army factory generates valid squads', () => {
 	}
 	expect(armyB.squads.length).toBe(23);
 	expect(armyB.team).toBe('Blue');
+	expect(armyB.isStillStanding()).toBeTruthy();
 	
 	expect(armyC.strategy).toBe('weakest');
 	armyC.spawnSquad();
@@ -31,5 +32,6 @@ test('if army factory generates valid squads', () => {
 	expect(armyD.prioritization.length).toBe(0);
 	
 	expect(armyE.prioritization).toEqual(['health', 'numbers', 'experience', 'damage']);
+	expect(armyE.isStillStanding()).toBeTruthy();
 
 });

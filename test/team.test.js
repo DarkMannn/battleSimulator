@@ -20,5 +20,6 @@ test('if team factory generates valid armies', () => {
 		counter--;
 	}
 	expect(Blue.armies.length).toBe(23);
+	expect(Blue.isStillStanding()).toBeTruthy();
 
 });
