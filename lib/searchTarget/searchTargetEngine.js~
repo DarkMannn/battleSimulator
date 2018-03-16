@@ -16,12 +16,12 @@ let getSquadInfo = {
 		return squad.units.reduce((sum, unit) =>
 			sum + (unit.type === 'soldier' ? unit.health : getVehicleInfo.health(unit)), 0);
 	},
-
+	
 	experience(squad) {
 		return squad.units.reduce((sum, unit) =>
 			sum + (unit.type === 'soldier' ? unit.experience : getVehicleInfo.experience(unit)), 0) / squad.units.length;
 	},
-
+	
 	numbers(squad) {
 		return squad.units.length;
 	},
@@ -51,7 +51,7 @@ let calculatorEngine = {
 		let currentPriority = prioritization.pop();
 		let currentPriorityExtreme = getSquadInfo[currentPriority](enemyTeam.armies[0].squads[0]);
 		let equalExtremesQueue = [{squad: enemyTeam.armies[0].squads[0], armyIndex: 0, squadIndex: 0}];
-
+		
 		enemyTeam.armies.forEach((army, armyIndex) => {
 
 			army.squads.forEach((squad, squadIndex) => {
@@ -79,7 +79,7 @@ let calculatorEngine = {
 		}
 
 		while (prioritization.length) {
-
+			
 			currentPriority = prioritization.pop();
 
 			equalExtremesQueue.sort((a, b) => getSquadInfo[currentPriority](a.squad) - getSquadInfo[currentPriority](b.squad));
@@ -91,9 +91,9 @@ let calculatorEngine = {
 				bestTargetArmySquad = equalExtremesQueue[0].squadIndex;
 				break;
 			}
-
+			
 		}
-
+		
 		return {
 			targetArmy: bestTargetArmy,
 			targetSquad: bestTargetArmySquad
@@ -109,7 +109,7 @@ let calculatorEngine = {
 		let currentPriority = prioritization.pop();
 		let currentPriorityExtreme = getSquadInfo[currentPriority](enemyTeam.armies[0].squads[0]);
 		let equalExtremesQueue = [{squad: enemyTeam.armies[0].squads[0], armyIndex: 0, squadIndex: 0}];
-
+		
 		enemyTeam.armies.forEach((army, armyIndex) => {
 
 			army.squads.forEach((squad, squadIndex) => {
@@ -137,7 +137,7 @@ let calculatorEngine = {
 		}
 
 		while (prioritization.length) {
-
+			
 			currentPriority = prioritization.pop();
 
 			equalExtremesQueue.sort((a, b) => getSquadInfo[currentPriority](b.squad) - getSquadInfo[currentPriority](a.squad));
@@ -149,9 +149,9 @@ let calculatorEngine = {
 				bestTargetArmySquad = equalExtremesQueue[0].squadIndex;
 				break;
 			}
-
+			
 		}
-
+		
 		return {
 			targetArmy: bestTargetArmy,
 			targetSquad: bestTargetArmySquad

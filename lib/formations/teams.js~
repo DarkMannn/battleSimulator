@@ -12,7 +12,7 @@ let teamProto = {
 		this.armies.push(Object.assign(
 			army(this.team, strategy, prioritization),
 			{
-				number: this.armies.length + 1
+				number: this.armies.length
 			}
 		));
 		return this.armies[this.armies.length - 1];

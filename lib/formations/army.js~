@@ -17,7 +17,7 @@ let armyProto = {
 				strategy: this.strategy,
 				prioritization: [...this.prioritization],
 				team: this.team,
-				number: this.squads.length + 1
+				number: this.squads.length
 			}
 		));
 	},
