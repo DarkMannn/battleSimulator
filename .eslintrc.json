@@ -37,6 +37,7 @@
 		"no-return-assign":"off",
 		"no-unused-vars":"off",
 		"padded-blocks":"off",
-		"eol-last":"off"
+		"eol-last":"off",
+		"promise/param-names":"off"
 	}
 }
