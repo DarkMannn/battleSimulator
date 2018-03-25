@@ -5,7 +5,7 @@
 		"node": true,
 		"jest": true
 	},
-	"extends": "standard",
+	"extends": "airbnb-base",
 	"parserOptions": {
 		"sourceType": "module"
 	},
@@ -35,9 +35,14 @@
 		"no-tabs":"off",
 		"space-before-function-paren":"off",
 		"no-return-assign":"off",
-		"no-unused-vars":"off",
 		"padded-blocks":"off",
 		"eol-last":"off",
-		"promise/param-names":"off"
+		"promise/param-names":"off",
+		"no-mixed-operators":"off",
+		"no-unused-vars":"off",
+		"no-plusplus":"off",
+		"no-param-reassign":"off",
+		"prefer-destructuring":"off",
+		"comma-dangle":"off"
 	}
 }

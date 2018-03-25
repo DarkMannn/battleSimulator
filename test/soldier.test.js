@@ -1,9 +1,9 @@
-let soldier = require('../lib/formations/soldier');
+const Soldier = require('../lib/formations/soldier');
 
-let soldierA = soldier(300, 4);
-let soldierB = soldier();
-let soldierC = soldier(5000, -50);
-let soldierD = soldier('230', undefined);
+const soldierA = new Soldier(300, 4);
+const soldierB = new Soldier();
+const soldierC = new Soldier(5000, -50);
+const soldierD = new Soldier('230', undefined);
 
 test('Soldier factory functions random number generators', () => {
 
@@ -39,13 +39,14 @@ test('Soldier factory function methods', () => {
 	soldierC.receiveDamage(50);
 	expect(soldierC.health).toBe(50);
 
-	let damageInflictedByC = 0.05 + soldierC.experience / 100;
-	let hitProbabilityByC = 0.5 * (1 + soldierC.health / 100) *
-		(Math.floor(Math.random() * (100 - (30 + soldierC.experience) + 1)) + 30 + soldierC.experience) / 100;
+	const damageInflictedByC = 0.05 + soldierC.experience / 100;
+	const hitProbabilityByC = 0.5 * (1 + soldierC.health / 100) *
+		(Math.floor(Math.random() * (100 - (30 + soldierC.experience) + 1))
+		+ 30 + soldierC.experience) / 100;
 	expect(soldierC.inflictDamage()).toBe(damageInflictedByC);
 	expect(soldierC.hitProbability()).not.toBe(hitProbabilityByC);
 
-	let soldierExperience = soldierD.experience;
+	const soldierExperience = soldierD.experience;
 	soldierD.increaseExperience();
 	if (soldierD.experience !== 50) expect(soldierD.experience).toBe(soldierExperience + 1);
 	else expect(soldierD.experience).toBe(50);
