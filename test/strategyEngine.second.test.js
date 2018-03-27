@@ -1,29 +1,46 @@
-let findTarget = require('../lib/targetCalculator/calculatorEngine');
-let {Red, Blue} = require('../lib/formations/teams');
+const findTarget = require('../lib/searchTarget/searchTargetEngine');
+const Army = require('../lib/formations/army');
 
-for (let i = 0; i < 3; i++) {
-	let army = Red.spawnArmy();
-	for (let j = 1; j <= 3; j++) {
-		army.spawnSquad(2 * j + i, {type: 'soldier', experience: 3 * j + 3 * i});
+const armies = [];
+
+for (let i = 0; i < 5; i++) {
+	const army = new Army();
+	for (let j = 1; j <= 5; j++) {
+		army.spawnSquad(i + 1, i + 1);
 	}
+	armies.push(army);
 }
 
-let maxNumbers = {army: 0, squad: 0};
-Red.armies.forEach((army, aIndex) => {
-	army.squads.forEach((squad, sIndex) => {
-		if (Red.armies[aIndex].squads[sIndex].units.length > Red.armies[maxNumbers.army].squads[maxNumbers.squad].units.length) {
-			maxNumbers.army = aIndex;
-			maxNumbers.squad = sIndex;
+let squadWithMaxNumbers = armies[0].squads[0];
+armies.forEach((army) => {
+	army.squads.forEach((squad) => {
+		if (squad.units.length > squadWithMaxNumbers.units.length) {
+			squadWithMaxNumbers = squad;
 		}
 	});
 });
 
-let armyBlue3 = Blue.spawnArmy('strongest', {numbers: 4});
+let squadWithMinNumbers = armies[0].squads[0];
+armies.forEach((army) => {
+	army.squads.forEach((squad) => {
+		if (squad.units.length < squadWithMinNumbers.units.length) {
+			squadWithMinNumbers = squad;
+		}
+	});
+});
 
-let res3 = findTarget(Red, armyBlue3.strategy, armyBlue3.prioritization);
+const army1 = new Army('strongest', { numbers: 4 });
+const army2 = new Army('weakest', { numbers: 4 });
+
+const squads = [];
+armies.forEach(army => squads.push(...army.squads));
+
+const target1 = findTarget(squads, army1.strategy, army1.prioritization);
+const target2 = findTarget(squads, army2.strategy, army2.prioritization);
 
 test('if strategy engine finds targets properly -> second test', () => {
 
-	expect(res3).toEqual(maxNumbers);
+	expect(target1.units.length).toEqual(squadWithMaxNumbers.units.length);
+	expect(target2.units.length).toEqual(squadWithMinNumbers.units.length);
 
 });

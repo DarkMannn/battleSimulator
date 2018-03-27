@@ -1,42 +1,46 @@
-let findTarget = require('../lib/targetCalculator/calculatorEngine');
-let {Red, Blue} = require('../lib/formations/teams');
+const findTarget = require('../lib/searchTarget/searchTargetEngine');
+const Army = require('../lib/formations/army');
+
+const armies = [];
 
 for (let i = 0; i < 5; i++) {
-	let army = Red.spawnArmy();
+	const army = new Army();
 	for (let j = 1; j <= 5; j++) {
-		army.spawnSquad(2 * j, {type: 'soldier', experience: 5 * j + i});
+		army.spawnSquad({ number: 4, experience: 5 * j });
 	}
+	armies.push(army);
 }
 
-let maxDamage = {army: 0, squad: 0};
-Red.armies.forEach((army, aIndex) => {
-	army.squads.forEach((squad, sIndex) => {
-		if (Red.armies[aIndex].squads[sIndex].calculateDamage() > Red.armies[maxDamage.army].squads[maxDamage.squad].calculateDamage()) {
-			maxDamage.army = aIndex;
-			maxDamage.squad = sIndex;
+let squadWithMaxDamage = armies[0].squads[0];
+armies.forEach((army) => {
+	army.squads.forEach((squad) => {
+		if (squad.calculateDamage() > squadWithMaxDamage.calculateDamage()) {
+			squadWithMaxDamage = squad;
 		}
 	});
 });
 
-let minDamage = {army: 0, squad: 0};
-Red.armies.forEach((army, aIndex) => {
-	army.squads.forEach((squad, sIndex) => {
-		if (Red.armies[aIndex].squads[sIndex].calculateDamage() < Red.armies[minDamage.army].squads[minDamage.squad].calculateDamage()) {
-			minDamage.army = aIndex;
-			minDamage.squad = sIndex;
+let squadWithMinDamage = armies[0].squads[0];
+armies.forEach((army) => {
+	army.squads.forEach((squad) => {
+		if (squad.calculateDamage() < squadWithMinDamage.calculateDamage()) {
+			squadWithMinDamage = squad;
 		}
 	});
 });
 
-let armyBlue1 = Blue.spawnArmy('strongest', {damage: 4});
-let armyBlue2 = Blue.spawnArmy('weakest', {damage: 4});
+const army1 = new Army('strongest', { damage: 4 });
+const army2 = new Army('weakest', { damage: 4 });
 
-let res1 = findTarget(Red, armyBlue1.strategy, armyBlue1.prioritization);
-let res2 = findTarget(Red, armyBlue2.strategy, armyBlue2.prioritization);
+const squads = [];
+armies.forEach(army => squads.push(...army.squads));
+
+const target1 = findTarget(squads, army1.strategy, army1.prioritization);
+const target2 = findTarget(squads, army2.strategy, army2.prioritization);
 
 test('if strategy engine finds targets properly -> first test', () => {
 
-	expect(res1).toEqual(maxDamage);
-	expect(res2).toEqual(minDamage);
+	expect(target1.calculateDamage()).toEqual(squadWithMaxDamage.calculateDamage());
+	expect(target2.calculateDamage()).toEqual(squadWithMinDamage.calculateDamage());
 
 });
