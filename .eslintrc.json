@@ -47,6 +47,7 @@
 		"no-underscore-dangle":"off",
 		"object-curly-newline":"off",
 		"no-confusing-arrow":"off",
-		"function-paren-newline":"off"
+		"function-paren-newline":"off",
+		"no-loop-func":"off"
 	}
 }
