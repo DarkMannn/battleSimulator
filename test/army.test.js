@@ -1,23 +1,28 @@
-let army = require('../lib/formations/army');
+const Army = require('../lib/formations/army');
 
-let armyA = army('Red');
-let armyB = army('Blue', 'some unknown strategy', {health: 4});
-let armyC = army('Green', 'weakest', {health: 3, experience: 6});
-let armyD = army('Green', 'random', {health: 3, experience: 6});
-let armyE = army('Green', 'strongest', {health: 0, experience: 0, numbers: 0, damage: 0});
+const armyA = new Army();
+const armyB = new Army('some unknown strategy', { health: 4 });
+const armyC = new Army('weakest', { health: 3, experience: 6 });
+const armyD = new Army('random', { health: 3, experience: 6 });
+const armyE = new Army('strongest', { health: 0, experience: 0, numbers: 0, damage: 0 });
 
-test('if army factory generates valid squads', () => {
+test('if army class generates valid squads', () => {
+	
+	expect(armyA.name).toBe(1);
+	expect(armyB.name).toBe(2);
+	expect(armyC.name).toBe(3);
+	expect(armyD.name).toBe(4);
+	expect(armyE.name).toBe(5);
 	
 	expect(armyA.squads.length).toBe(2);
 
-	expect(armyB.strategy === 'random' || armyB.strategy === 'weakest' || armyB.strategy === 'strongest').toBeTruthy();
-	let counter = 23;
-	while (counter) {
-		armyB.spawnSquad();
-		counter--;
-	}
+	expect(
+		armyB.strategy === 'random' ||
+		armyB.strategy === 'weakest' ||
+		armyB.strategy === 'strongest'
+	).toBeTruthy();
+	armyB.spawnSquads(23);
 	expect(armyB.squads.length).toBe(23);
-	expect(armyB.team).toBe('Blue');
 	expect(armyB.isStillStanding()).toBeTruthy();
 	
 	expect(armyC.strategy).toBe('weakest');
@@ -25,9 +30,9 @@ test('if army factory generates valid squads', () => {
 	armyC.spawnSquad();
 	expect(armyC.squads.length).toBe(2);
 	expect(armyC.prioritization[3]).toBe('experience');
-	expect(armyC.squads[0].prioritization[3]).toBe('experience');
+	expect(armyC.prioritization[3]).toBe('experience');
 	expect(armyC.prioritization[2]).toBe('health');
-	expect(armyC.squads[0].prioritization[2]).toBe('health');
+	expect(armyC.prioritization[2]).toBe('health');
 	
 	expect(armyD.prioritization.length).toBe(0);
 	

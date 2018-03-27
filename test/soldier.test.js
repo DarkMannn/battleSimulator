@@ -5,7 +5,7 @@ const soldierB = new Soldier();
 const soldierC = new Soldier(5000, -50);
 const soldierD = new Soldier('230', undefined);
 
-test('Soldier factory functions random number generators', () => {
+test('Soldier class random number generators', () => {
 
 	expect(soldierA.recharge).toBe(300);
 	expect(soldierA.experience).toBe(4);
@@ -28,7 +28,7 @@ test('Soldier factory functions random number generators', () => {
 
 });
 
-test('Soldier factory function methods', () => {
+test('Soldier class methods', () => {
 
 	soldierA.receiveDamage(100);
 	expect(soldierA.isActive).toBeFalsy();
@@ -43,7 +43,7 @@ test('Soldier factory function methods', () => {
 	const hitProbabilityByC = 0.5 * (1 + soldierC.health / 100) *
 		(Math.floor(Math.random() * (100 - (30 + soldierC.experience) + 1))
 		+ 30 + soldierC.experience) / 100;
-	expect(soldierC.inflictDamage()).toBe(damageInflictedByC);
+	expect(soldierC.calculateDamage()).toBe(damageInflictedByC);
 	expect(soldierC.hitProbability()).not.toBe(hitProbabilityByC);
 
 	const soldierExperience = soldierD.experience;

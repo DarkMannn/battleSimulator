@@ -43,6 +43,10 @@
 		"no-plusplus":"off",
 		"no-param-reassign":"off",
 		"prefer-destructuring":"off",
-		"comma-dangle":"off"
+		"comma-dangle":"off",
+		"no-underscore-dangle":"off",
+		"object-curly-newline":"off",
+		"no-confusing-arrow":"off",
+		"function-paren-newline":"off"
 	}
 }

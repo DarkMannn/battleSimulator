@@ -1,11 +1,11 @@
-let vehicle = require('../lib/formations/vehicle');
+let Vehicle = require('../lib/formations/vehicle');
 
-let vehicleA = vehicle(300);
-let vehicleB = vehicle();
-let vehicleC = vehicle(1300, {recharge: 200, experience: 5});
-let vehicleD = vehicle(2001, {notRecharge: 300, notExperience: 6});
+let vehicleA = new Vehicle(300);
+let vehicleB = new Vehicle();
+let vehicleC = new Vehicle(1300);
+let vehicleD = new Vehicle(2001);
 
-test('vehicle factory function random number generator', () => {
+test('Vehicle class random recharge generator', () => {
 	
 	expect(vehicleA.recharge).toBeGreaterThanOrEqual(1000);
 	expect(vehicleA.recharge).toBeLessThanOrEqual(2000);
@@ -21,7 +21,7 @@ test('vehicle factory function random number generator', () => {
 
 });
 
-test('vehicle factory function operators count', () => {
+test('Vehicle class random operators count', () => {
 
 	expect(vehicleA.operators.length).toBeGreaterThanOrEqual(1);
 	expect(vehicleA.operators.length).toBeLessThanOrEqual(3);
@@ -32,20 +32,6 @@ test('vehicle factory function operators count', () => {
 
 });
 
-test('default and custom operators attributes', () => {
-
-	vehicleC.operators.forEach(operator => {
-		expect(operator.recharge).toBe(200);
-		expect(operator.experience).toBe(5);
-	});
-
-	vehicleD.operators.forEach(operator => {
-		expect(operator.recharge).not.toBe(300);
-		expect(operator.experience).not.toBe(6);
-	});
-
-});
-
 test('if inflicted damage is calculated corectly', () => {
 
 	let groupDamageVehicleA = 0;
@@ -53,14 +39,14 @@ test('if inflicted damage is calculated corectly', () => {
 	vehicleA.operators.forEach(operator => groupDamageVehicleA += operator.experience / 100);
 	vehicleB.operators.forEach(operator => groupDamageVehicleB += operator.experience / 100);
 
-	expect(vehicleA.inflictDamage()).toBe(0.1 + groupDamageVehicleA);
-	expect(vehicleB.inflictDamage()).toBe(0.1 + groupDamageVehicleB);
+	expect(vehicleA.calculateDamage()).toBe(0.1 + groupDamageVehicleA);
+	expect(vehicleB.calculateDamage()).toBe(0.1 + groupDamageVehicleB);
 
 });
 
 test('if still active although killed', () => {
 
-	let vehicleE = vehicle();
+	let vehicleE = new Vehicle();
 	vehicleE.receiveDamage(500);
 	expect(vehicleE.operators.length).toBe(0);
 	expect(vehicleE.isActive).toBeFalsy();
@@ -69,7 +55,7 @@ test('if still active although killed', () => {
 
 test('if experience is increased to all operators', () => {
 
-	let vehicleF = vehicle();
+	let vehicleF = new Vehicle();
 	let operatorsExpArray = vehicleF.operators.map(operator => operator.experience);
 	vehicleF.increaseExperience();
 	expect(vehicleF.operators.map(operator => operator.experience)).toEqual(operatorsExpArray.map(opExp => opExp !== 50 ? opExp + 1 : opExp));
