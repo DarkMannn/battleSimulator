@@ -48,6 +48,9 @@
 		"object-curly-newline":"off",
 		"no-confusing-arrow":"off",
 		"function-paren-newline":"off",
-		"no-loop-func":"off"
+		"no-loop-func":"off",
+		"wrap-iife":["error", "inside"],
+		"no-await-in-loop":"off",
+		"no-continue":"off"
 	}
 }
