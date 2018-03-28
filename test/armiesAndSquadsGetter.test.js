@@ -1,4 +1,4 @@
-const getArmiesAndSquads = require('../lib/helper/armiesAndSquadsGetter');
+const getArmiesAndSquads = require('../lib/helper/getOrderedSquads');
 const Army = require('../lib/formations/army');
 
 const army1 = new Army();
