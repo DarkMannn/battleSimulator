@@ -7,7 +7,7 @@ const army3 = new Army();
 const army4 = new Army();
 const army5 = new Army();
 
-const { armies, squadsQueue } = getArmiesAndSquads([army5, army1, army4, army3, army2]);
+const squadsQueue = getArmiesAndSquads([army5, army1, army4, army3, army2]);
 
 test('if squads are ordered according to recharge time', () => {
 
@@ -19,9 +19,3 @@ test('if squads are ordered according to recharge time', () => {
 
 });
 
-test('if armies are ordered according to numbers (names)', () => {
-
-	const armiesAreOrderedProperly = armies.every((army, index) => army.name === index + 1);
-	expect(armiesAreOrderedProperly).toBeTruthy();
-
-});
